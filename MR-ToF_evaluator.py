@@ -34,18 +34,7 @@ TOF_singly['TOF total']=(TOF_singly['TOF for N revol']+F1+M1)*1000
 TOF_doubly['TOF total']=(TOF_doubly['TOF for N revol']+F1+M1)*1000
 TOF_singly['El']=ame16['el']+str(1)
 TOF_doubly['El']=ame16['el']+str(2)
-'''
-lst_files = ['data/test_run455.lst',    # nrevs = x, bg = x ms, cycles = x, test mode
-             'data/test_run456.lst']    # nrevs = x, bg = x ms, cycles = x, test mode
 
-# open preanalyzed dataset if existing, raw conversion takes LONG!
-if os.path.isfile('mr-tof-data.p'):
-    df = pickle.load(open('mr-tof-data.p','rb'))
-else:
-    df = process_lst('test_run455.lst')
-    pickle.dump(df, open('mr-tof-data.p','wb'))
-
-'''
 data_whole = pd.read_csv('Sc_Run459.mpa', header=172, float_precision='high')
 data_whole[['tof',"sweep", "counts"]] = pd.DataFrame([ x.split() for x in data_whole["[DATA]"].tolist() ])
 data_whole = data_whole.drop('[DATA]', axis=1).astype(float)
